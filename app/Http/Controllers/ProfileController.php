@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Support\Renderable;
 
 class ProfileController extends Controller
 {
     /**
      * Show the user profile.
-     * 
-     * 
+     *
+     *
      * @param string userId
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
-    public function index(string $userId)
+    public function index(string $userId): Renderable
     {
         /**
          * @var User
          */
         $user = User::findOrFail($userId);
 
-        return view('profile', ['user' => $user]);
+        return view('profiles.index', ['user' => $user]);
     }
 }
