@@ -7,8 +7,10 @@
                 <div class="d-flex justify-content-between align-items-baseline">
                     <h1>{{ $user->username }}</h1>
                     <div class="btn-group">
+                        @can('update', $user->profile)
                         <a href="{{ route('post.create') }}" class="btn btn-primary">Add Post</a>
                         <a href="{{route('profile.edit', ['user' => $user])}}" class="btn btn-warning">Edit Profile</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="d-flex">
