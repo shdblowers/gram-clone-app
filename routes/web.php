@@ -28,3 +28,5 @@ Route::put('/profile/{user}', [Controllers\ProfileController::class, 'update'])-
 Route::get('/post/create', [Controllers\PostController::class, 'create'])->name('post.create');
 Route::post('/post', [Controllers\PostController::class, 'store'])->name('post.store');
 Route::get('/post/{post}', [Controllers\PostController::class, 'show'])->name('post.show');
+
+Route::post('/follow/{user}', [Controllers\FollowController::class, 'store'])->name('follow.store');

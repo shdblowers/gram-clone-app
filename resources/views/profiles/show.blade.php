@@ -10,6 +10,8 @@
                         @can('update', $user->profile)
                         <a href="{{ route('post.create') }}" class="btn btn-primary">Add Post</a>
                         <a href="{{route('profile.edit', ['user' => $user])}}" class="btn btn-warning">Edit Profile</a>
+                        @else
+                            <follow-button user-id="{{$user->id}}"></follow-button>
                         @endcan
                     </div>
                 </div>
