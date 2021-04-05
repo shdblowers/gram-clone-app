@@ -14,9 +14,23 @@ class PostController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @return Renderable
+     */
     public function create(): Renderable
     {
         return view('posts.create');
+    }
+
+    /**
+     * Show a Post
+     *
+     * @param Post $post
+     * @return Renderable
+     */
+    public function show(Post $post): Renderable
+    {
+        return view('posts.show', compact('post'));
     }
 
     public function store()
@@ -41,10 +55,5 @@ class PostController extends Controller
 
         return redirect('/profile/' . $user->id);
 
-    }
-
-    public function show(Post $post): Renderable
-    {
-        return view('posts.show', compact('post'));
     }
 }
