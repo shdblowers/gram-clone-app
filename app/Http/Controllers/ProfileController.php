@@ -17,4 +17,25 @@ class ProfileController extends Controller
     {
         return view('profiles.show', compact('user'));
     }
+
+    public function edit(User $user): Renderable
+    {
+        return view('profiles.edit', compact('user'));
+    }
+
+    public function update()
+    {
+        /** @var User $user */
+        $user = auth()->user();
+
+        $data = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'url'
+        ]);
+
+        $user->profile()->update($data);
+
+        return redirect('/profile/' . $user->id);
+    }
 }

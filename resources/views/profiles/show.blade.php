@@ -6,7 +6,10 @@
             <div class="col-9 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
                     <h1>{{ $user->username }}</h1>
-                    <a href="{{ route('post.create') }}" class="btn btn-primary">Add Post</a>
+                    <div class="btn-group">
+                        <a href="{{ route('post.create') }}" class="btn btn-primary">Add Post</a>
+                        <a href="{{route('profile.edit', ['user' => $user])}}" class="btn btn-warning">Edit Profile</a>
+                    </div>
                 </div>
                 <div class="d-flex">
                     <div class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</div>
