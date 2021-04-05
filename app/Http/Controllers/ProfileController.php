@@ -10,17 +10,11 @@ class ProfileController extends Controller
     /**
      * Show the user profile.
      *
-     *
-     * @param string userId
+     * @param User $user
      * @return Renderable
      */
-    public function show(string $userId): Renderable
+    public function show(User $user): Renderable
     {
-        /**
-         * @var User
-         */
-        $user = User::findOrFail($userId);
-
-        return view('profiles.index', ['user' => $user]);
+        return view('profiles.show', compact('user'));
     }
 }
