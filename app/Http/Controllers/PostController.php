@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use \App\Models\User;
+use \App\Models\Post;
+use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
@@ -29,6 +31,9 @@ class PostController extends Controller
 
         $imagePath = (request('image')->store('uploads', 'public'));
 
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
+
         $user->posts()->create([
             'caption' => $data['caption'],
             'image' => $imagePath
@@ -36,5 +41,10 @@ class PostController extends Controller
 
         return redirect('/profile/' . $user->id);
 
+    }
+
+    public function show(Post $post): Renderable
+    {
+        return view('posts.show', compact('post'));
     }
 }

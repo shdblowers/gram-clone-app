@@ -14,7 +14,7 @@ class ProfileController extends Controller
      * @param string userId
      * @return Renderable
      */
-    public function index(string $userId): Renderable
+    public function show(string $userId): Renderable
     {
         /**
          * @var User
