@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
+use \App\Models\User;
 
 class PostController extends Controller
 {
@@ -18,14 +19,22 @@ class PostController extends Controller
 
     public function store()
     {
+        /** @var User $user */
+        $user = auth()->user();
+
         $data = request()->validate([
             'caption' => 'required',
             'image' => ['required', 'image'],
         ]);
 
-        auth()->user()->posts()->create($data);
+        $imagePath = (request('image')->store('uploads', 'public'));
 
+        $user->posts()->create([
+            'caption' => $data['caption'],
+            'image' => $imagePath
+        ]);
 
+        return redirect('/profile/' . $user->id);
 
     }
 }

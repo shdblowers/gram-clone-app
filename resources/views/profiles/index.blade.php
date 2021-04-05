@@ -8,12 +8,25 @@
                     <h1>{{ $user->username }}</h1>
                     <a href="{{ route('post.create') }}" class="btn btn-primary">Add Post</a>
                 </div>
+                <div class="d-flex">
+                    <div class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</div>
+                    <div class="pr-5"><strong>23k</strong> followers</div>
+                    <div class="pr-5"><strong>212</strong> following</div>
+                </div>
                 <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
                 <div>{{ $user->profile->description }}</div>
                 <div>
                     <a href="{{ $user->profile->url }}">{{ $user->profile->url }}</a>
                 </div>
             </div>
+        </div>
+
+        <div class="row pt-5">
+            @foreach($user->posts as $post)
+                <div class="col-4 pb-4">
+                    <img src="/storage/{{$post->image}}" alt="{{$post->caption}}" class="w-100"/>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection
